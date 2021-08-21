@@ -1,0 +1,13 @@
+---
+export async function getStaticPaths () {
+  const data = Astro.fetchContent('../../posts/**/*.md')
+  return data.map(post => ({
+    params: {slug: post.slug},
+    props: { post }
+  }))
+}
+
+const { post } = Astro.props
+---
+
+{ post.astro.html }
